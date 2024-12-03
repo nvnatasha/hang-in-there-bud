@@ -3,6 +3,7 @@ let mainPoster = document.querySelector('.main-poster')
 let imageURL = document.querySelector('.poster-img')
 let title = document.querySelector('.poster-title')
 let quote = document.querySelector('.poster-quote')
+let showRandom = document.querySelector('.show-random')
 
 
 // we've provided you with some data to work with 👇
@@ -109,6 +110,7 @@ var currentPoster;
 
 // event listeners go here 👇
 window.addEventListener('load', createRandomPoster)
+showRandom.addEventListener('click', createRandomPoster)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
