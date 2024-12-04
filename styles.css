@@ -48,20 +48,22 @@ button:hover {
   width: 70%;
 }
 
-.poster-img {
+#poster-img, #userImage {
   background-size: cover;
   border: 2px solid white;
   max-width: 80%;
 }
 
-.poster-title,
-.poster-quote {
+#poster-title,
+#poster-quote, #user-title
+#user-quote {
   color: white;
   line-height: 1;
   width: 90%;
 }
 
-.poster-title {
+#poster-title,
+#user-quote {
   font-size: 60px;
   font-weight: normal;
   letter-spacing: 20px;
