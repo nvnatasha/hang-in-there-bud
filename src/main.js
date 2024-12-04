@@ -4,6 +4,17 @@ let imageURL = document.querySelector('.poster-img')
 let title = document.querySelector('.poster-title')
 let quote = document.querySelector('.poster-quote')
 let showRandom = document.querySelector('.show-random')
+let createOwn = document.querySelector('.show-form')
+let showSaved = document.querySelector('.show-saved')
+let showMain = document.querySelector('.show-main')
+let backToMain = document.querySelector('.back-to-main')
+let userImage = document.querySelector('poster-image-url')
+let userTitle = document.querySelector('poster-title')
+let userQuote = document.querySelector('poster-quote')
+let OwnPosterForm = document.querySelector('.poster-form')
+let showSavedPosters = document.querySelector('.saved-posters')
+let pageViews = document.querySelectorAll('section')
+
 
 
 // we've provided you with some data to work with 👇
@@ -111,6 +122,18 @@ var currentPoster;
 // event listeners go here 👇
 window.addEventListener('load', createRandomPoster)
 showRandom.addEventListener('click', createRandomPoster)
+createOwn.addEventListener('click', () => {
+  switchPages(OwnPosterForm)
+})
+showSaved.addEventListener('click', () => {
+  switchPages(showSavedPosters)
+})
+showMain.addEventListener('click', () => {
+  switchPages(mainPoster)
+})
+backToMain.addEventListener('click', () => {
+  switchPages(mainPoster)
+})
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -145,4 +168,11 @@ function createRandomPoster() {
   quote.innerText = randomPoster.quote
 
   randomPoster = currentPoster
+}
+
+function switchPages(showPage) {
+  pageViews.forEach((page) =>{
+    page.classList.add('hidden')
+  })
+  showPage.classList.remove('hidden')
 }
