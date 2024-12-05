@@ -321,6 +321,14 @@ function createUserPoster() {
   quote.innerText = userQuote.value
   
   currentPoster = createPoster(userImage.value, userTitle.value, userQuote.value)  
+
+  resetForm()
+}
+
+function resetForm() {
+  userImage.value = ''
+  userTitle.value = ''
+  userQuote.value = ''
 }
 
 function userPosterButton(event) {
