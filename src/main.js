@@ -271,6 +271,7 @@ sadToMain.addEventListener('click', () =>
 )
 
 
+
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -383,21 +384,32 @@ function displaySadPosters() {
 
     sadPostersFlex.innerHTML = ''
   
-    cleanedPosters.forEach((poster) =>{
-      let smallSadPoster = document.createElement('div')
-      smallSadPoster.className = 'sad-mini-poster'
+    cleanedPosters.forEach((smallSadPoster) =>{
+      let smallSadPosterThings = document.createElement('div')
+      smallSadPosterThings.className = 'sad-mini-poster'
+      smallSadPosterThings.setAttribute('data-id', smallSadPoster.id)
       
-      smallSadPoster.innerHTML = `
-      <img src="${poster.imageURL}" alt="Poster Image">
-      <h2>${poster.title}</h2>
-      <h4>${poster.quote}</h4>
+      smallSadPosterThings.innerHTML = `
+      <img src="${smallSadPoster.imageURL}" alt="Poster Image">
+      <h2>${smallSadPoster.title}</h2>
+      <h4>${smallSadPoster.quote}</h4>
       `
-      sadPostersFlex.appendChild(smallSadPoster)
+      smallSadPosterThings.addEventListener('dblclick', () =>{
+        deletePoster(smallSadPoster.title)
+      })
+      
+      sadPostersFlex.appendChild(smallSadPosterThings)
     })
   }
-
+  
   function sadPostersViewHandler() {
     displaySadPosters()
     switchPages(showSadPosters)
   }
-
+  
+  function deletePoster(title) {
+    cleanedPosters = cleanedPosters.filter((poster) => {
+      return poster.title !== title
+    })
+    displaySadPosters()
+  }
