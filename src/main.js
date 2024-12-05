@@ -18,7 +18,9 @@ let pageViews = document.querySelectorAll('section')
 let userPoster = document.querySelector('.make-poster')
 let savePosterButton = document.querySelector('.save-poster')
 let savedPostersGrid = document.querySelector('.saved-posters-grid')
-
+let showSadPosters = document.querySelector('.unmotivational-posters')
+let showSadButton = document.querySelector('.show-sad')
+let sadToMain = document.querySelector('.sad-to-main')
 
 
 // we've provided you with some data to work with 👇
@@ -126,21 +128,25 @@ var currentPoster;
 // event listeners go here 👇
 window.addEventListener('load', createRandomPoster)
 showRandom.addEventListener('click', createRandomPoster)
+userPoster.addEventListener('click', userPosterButton)
+savePosterButton.addEventListener('click', savePoster)
+showSaved.addEventListener('click', showSavedPostersHandler)
+savePosterButton.addEventListener('click', savePoster)
 createOwn.addEventListener('click', () => {
   switchPages(OwnPosterForm)
 })
-savePosterButton.addEventListener('click', savePoster)
 showMain.addEventListener('click', () => {
   switchPages(mainPoster)
 })
 backToMain.addEventListener('click', () => {
   switchPages(mainPoster)
 })
-showSaved.addEventListener('click', showSavedPostersHandler)
-
-userPoster.addEventListener('click', userPosterButton)
-savePosterButton.addEventListener('click', savePoster)
-
+showSadButton.addEventListener('click', () =>
+  switchPages(showSadPosters)
+)
+sadToMain.addEventListener('click', () =>
+  switchPages(mainPoster)
+)
 
 
 // functions and event handlers go here 👇
