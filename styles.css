@@ -27,6 +27,7 @@ button {
 
 button:hover {
   background: darkslateblue;
+  cursor: pointer;
 }
 
 .hidden {
@@ -73,6 +74,7 @@ button:hover {
 
 .main-poster button {
   margin: 10px;
+  cursor: pointer;
 }
 
 /* ~~~~~ POSTER FORM SECTION ~~~~~ */
@@ -133,6 +135,7 @@ button:hover {
   height: 340px;
   padding: 25px;
   width: 425px;
+  cursor: pointer;
 }
 
 .mini-poster img, .sad-mini-poster img {
@@ -192,4 +195,16 @@ button:hover {
 .modal:not(.hidden) {
   visibility: visible;
   opacity: 1;
+}
+
+.hide {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+
+p {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
 }

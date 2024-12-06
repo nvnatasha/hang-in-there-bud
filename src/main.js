@@ -27,6 +27,7 @@ let modalImage = document.querySelector('#modalImage')
 let modalTitle = document.querySelector('#modalTitle')
 let modalQuote = document.querySelector('#modalQuote')
 let modalClose = document.querySelector('.close')
+let errorMessage = document.querySelector('#error-message')
 
 
 // we've provided you with some data to work with 👇
@@ -253,11 +254,11 @@ let unmotivationalPosters = [
 var savedPosters = []
 var currentPoster;
 let cleanedPosters = []
-
+let dataCleaned = false
 // event listeners go here 👇
 window.addEventListener('load', createRandomPoster)
 showRandom.addEventListener('click', createRandomPoster)
-userPoster.addEventListener('click', userPosterButton)
+userPoster.addEventListener('click', createUserPoster)
 savePosterButton.addEventListener('click', savePoster)
 showSaved.addEventListener('click', showSavedPostersHandler)
 savePosterButton.addEventListener('click', savePoster)
@@ -318,12 +319,28 @@ function switchPages(showPage) {
   showPage.classList.remove('hidden')
 }
 
-function createUserPoster() {
+function createUserPoster(event) {
+  if (event) {
+    event.preventDefault()
+  }
+  if (
+    !userImage.value.trim() ||
+    !userTitle.value.trim() ||
+    !userQuote.value.trim()
+  ) {
+  
+    errorMessage.classList.remove('hide')
+    return
+  }
+  errorMessage.classList.add('hide')
+  
   imageURL.src = userImage.value
   title.innerText = userTitle.value
   quote.innerText = userQuote.value
   
   currentPoster = createPoster(userImage.value, userTitle.value, userQuote.value)  
+
+  switchPages(mainPoster)
 
   resetForm()
 }
@@ -332,13 +349,6 @@ function resetForm() {
   userImage.value = ''
   userTitle.value = ''
   userQuote.value = ''
-}
-
-function userPosterButton(event) {
-  event.preventDefault()
-
-  createUserPoster()
-  switchPages(mainPoster)
 }
 
 function savePoster() {
@@ -386,15 +396,21 @@ function showSavedPostersHandler() {
 }
 
 function cleanData () {
-  unmotivationalPosters.forEach((sadPoster) =>{
-    let cleanPoster = createPoster(sadPoster.img_url, sadPoster.name, sadPoster.description)
+  if (!dataCleaned) {
+    unmotivationalPosters.forEach((sadPoster) =>{
+      let cleanPoster = createPoster(sadPoster.img_url, sadPoster.name, sadPoster.description)
 
-    cleanedPosters.push(cleanPoster)
-  })
+      cleanedPosters.push(cleanPoster)
+  
+    })
+    dataCleaned = true
+  }
 }
 
 function displaySadPosters() {
+  if (!dataCleaned) {
     cleanData()
+    }
 
     sadPostersFlex.innerHTML = ''
   
@@ -422,11 +438,20 @@ function displaySadPosters() {
   }
   
   function deletePoster(title) {
+    console.log('Before:', cleanedPosters)
     cleanedPosters = cleanedPosters.filter((poster) => {
       return poster.title !== title
     })
+    console.log('After:', cleanedPosters);
     displaySadPosters()
   }
+
+  // function initialize () {
+  //   if (cleanedPosters.length === 0){
+  //   cleanData()
+  //   }
+  //   sadPostersViewHandler()
+  // }
 
   function openModal(poster) {
     modalImage.src = poster.imageURL;
