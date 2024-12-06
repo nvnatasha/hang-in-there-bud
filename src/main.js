@@ -1,19 +1,20 @@
 // query selector variables go here 👇
 let mainPoster = document.querySelector('.main-poster')
-let imageURL = document.querySelector('.poster-img')
-let title = document.querySelector('.poster-title')
-let quote = document.querySelector('.poster-quote')
+let imageURL = document.querySelector('#poster-img')
+let title = document.querySelector('#poster-title')
+let quote = document.querySelector('#poster-quote')
 let showRandom = document.querySelector('.show-random')
 let createOwn = document.querySelector('.show-form')
 let showSaved = document.querySelector('.show-saved')
 let showMain = document.querySelector('.show-main')
 let backToMain = document.querySelector('.back-to-main')
-let userImage = document.querySelector('poster-image-url')
-let userTitle = document.querySelector('poster-title')
-let userQuote = document.querySelector('poster-quote')
+let userImage = document.querySelector('#user-image-url')
+let userTitle = document.querySelector('#user-poster-title')
+let userQuote = document.querySelector('#user-poster-quote')
 let OwnPosterForm = document.querySelector('.poster-form')
 let showSavedPosters = document.querySelector('.saved-posters')
 let pageViews = document.querySelectorAll('section')
+let userPoster = document.querySelector('.make-poster')
 
 
 
@@ -134,6 +135,9 @@ showMain.addEventListener('click', () => {
 backToMain.addEventListener('click', () => {
   switchPages(mainPoster)
 })
+userPoster.addEventListener('click', userPosterButton)
+
+
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -175,4 +179,22 @@ function switchPages(showPage) {
     page.classList.add('hidden')
   })
   showPage.classList.remove('hidden')
+}
+
+function createUserPoster() {
+
+  imageURL.src = userImage.value
+  title.innerText = userTitle.value
+  quote.innerText = userQuote.value
+  
+  currentPoster = createPoster(userImage.value, userTitle.value, userQuote.value)
+  
+}
+
+function userPosterButton(event) {
+  event.preventDefault()
+
+  createUserPoster()
+  switchPages(mainPoster)
+
 }
