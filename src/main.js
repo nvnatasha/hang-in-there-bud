@@ -22,6 +22,11 @@ let showSadPosters = document.querySelector('.unmotivational-posters')
 let showSadButton = document.querySelector('.show-sad')
 let sadToMain = document.querySelector('.sad-to-main')
 let sadPostersFlex = document.querySelector('.sad-posters-flex')
+let modal = document.querySelector('#posterModal')
+let modalImage = document.querySelector('#modalImage')
+let modalTitle = document.querySelector('#modalTitle')
+let modalQuote = document.querySelector('#modalQuote')
+let modalClose = document.querySelector('.close')
 
 
 // we've provided you with some data to work with 👇
@@ -257,6 +262,8 @@ savePosterButton.addEventListener('click', savePoster)
 showSaved.addEventListener('click', showSavedPostersHandler)
 savePosterButton.addEventListener('click', savePoster)
 showSadButton.addEventListener('click', sadPostersViewHandler)
+modal.addEventListener('click', closeModal)
+modalClose.addEventListener('click', closeModal)
 createOwn.addEventListener('click', () => {
   switchPages(OwnPosterForm)
 })
@@ -269,9 +276,6 @@ backToMain.addEventListener('click', () => {
 sadToMain.addEventListener('click', () =>
   switchPages(mainPoster)
 )
-
-
-
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -315,7 +319,6 @@ function switchPages(showPage) {
 }
 
 function createUserPoster() {
-
   imageURL.src = userImage.value
   title.innerText = userTitle.value
   quote.innerText = userQuote.value
@@ -339,7 +342,6 @@ function userPosterButton(event) {
 }
 
 function savePoster() {
-  console.log('current:', currentPoster)
   if (currentPoster) {
     let duplicate = false
 
@@ -368,6 +370,11 @@ function displaySavedPosters() {
     <h2>${poster.title}</h2>
     <h4>${poster.quote}</h4>
     `
+
+    smallPoster.addEventListener('dblclick', () => {
+      openModal(poster)
+  })
+
     savedPostersGrid.appendChild(smallPoster)
   })
 }
@@ -379,7 +386,6 @@ function showSavedPostersHandler() {
 }
 
 function cleanData () {
-
   unmotivationalPosters.forEach((sadPoster) =>{
     let cleanPoster = createPoster(sadPoster.img_url, sadPoster.name, sadPoster.description)
 
@@ -421,3 +427,19 @@ function displaySadPosters() {
     })
     displaySadPosters()
   }
+
+  function openModal(poster) {
+    modalImage.src = poster.imageURL;
+    modalTitle.textContent = poster.title;
+    modalQuote.textContent = poster.quote;
+  
+    modal.classList.remove('hidden')
+  }
+
+  function closeModal(event) {
+    if (event.target === event.currentTarget)
+    modal.classList.add('hidden')
+  }
+
+
+

@@ -38,7 +38,7 @@ button:hover {
   height: 100vh;
 }
 
-.poster {
+.poster, .modal-content {
   background: black;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@ button:hover {
   width: 70%;
 }
 
-#poster-img, #userImage {
+#poster-img, #userImage, #modalImage{
   background-size: cover;
   border: 2px solid white;
   max-width: 80%;
@@ -56,14 +56,14 @@ button:hover {
 
 #poster-title,
 #poster-quote, #user-title
-#user-quote {
+#user-quote, #modalTitle, #modalQuote {
   color: white;
   line-height: 1;
   width: 90%;
 }
 
 #poster-title,
-#user-quote {
+#user-title, #modalTitle {
   font-size: 60px;
   font-weight: normal;
   letter-spacing: 20px;
@@ -165,5 +165,31 @@ button:hover {
 
 .sad-mini-poster h2 {
   color: black;
+}
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+.modal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal:not(.hidden) {
+  visibility: visible;
+  opacity: 1;
 }
