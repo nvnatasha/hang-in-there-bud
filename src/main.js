@@ -3,6 +3,7 @@ let mainPoster = document.querySelector('.main-poster')
 let imageURL = document.querySelector('#poster-img')
 let title = document.querySelector('#poster-title')
 let quote = document.querySelector('#poster-quote')
+let poster = document.querySelector('.poster')
 let showRandom = document.querySelector('.show-random')
 let createOwn = document.querySelector('.show-form')
 let showSaved = document.querySelector('.show-saved')
@@ -15,6 +16,8 @@ let OwnPosterForm = document.querySelector('.poster-form')
 let showSavedPosters = document.querySelector('.saved-posters')
 let pageViews = document.querySelectorAll('section')
 let userPoster = document.querySelector('.make-poster')
+let savePosterButton = document.querySelector('.save-poster')
+let savedPostersGrid = document.querySelector('.saved-posters-grid')
 
 
 
@@ -126,16 +129,17 @@ showRandom.addEventListener('click', createRandomPoster)
 createOwn.addEventListener('click', () => {
   switchPages(OwnPosterForm)
 })
-showSaved.addEventListener('click', () => {
-  switchPages(showSavedPosters)
-})
+savePosterButton.addEventListener('click', savePoster)
 showMain.addEventListener('click', () => {
   switchPages(mainPoster)
 })
 backToMain.addEventListener('click', () => {
   switchPages(mainPoster)
 })
+showSaved.addEventListener('click', showSavedPostersHandler)
+
 userPoster.addEventListener('click', userPosterButton)
+savePosterButton.addEventListener('click', savePoster)
 
 
 
@@ -171,7 +175,7 @@ function createRandomPoster() {
   title.innerText = randomPoster.title
   quote.innerText = randomPoster.quote
 
-  randomPoster = currentPoster
+  currentPoster = randomPoster
 }
 
 function switchPages(showPage) {
@@ -187,8 +191,7 @@ function createUserPoster() {
   title.innerText = userTitle.value
   quote.innerText = userQuote.value
   
-  currentPoster = createPoster(userImage.value, userTitle.value, userQuote.value)
-  
+  currentPoster = createPoster(userImage.value, userTitle.value, userQuote.value)  
 }
 
 function userPosterButton(event) {
@@ -196,5 +199,45 @@ function userPosterButton(event) {
 
   createUserPoster()
   switchPages(mainPoster)
-
 }
+
+function savePoster() {
+  console.log('current:', currentPoster)
+  if (currentPoster) {
+    let duplicate = false
+
+    savedPosters.forEach((poster) =>{
+      if (poster.id === currentPoster.id){
+        duplicate = true
+      }
+    })
+    if (!duplicate){
+      savedPosters.push(currentPoster)
+
+      displaySavedPosters()
+    }
+  }
+}
+
+function displaySavedPosters() {
+  savedPostersGrid.innerHTML = ''
+  console.log('saved:', savedPosters)
+  savedPosters.forEach((poster) =>{
+    let smallPoster = document.createElement('div')
+    smallPoster.className = 'mini-poster'
+    
+    smallPoster.innerHTML = `
+    <img src="${poster.imageURL}" alt="Poster Image">
+    <h2>${poster.title}</h2>
+    <h4>${poster.quote}</h4>
+    `
+    savedPostersGrid.appendChild(smallPoster)
+  })
+}
+
+function showSavedPostersHandler() {
+  
+  displaySavedPosters()
+  switchPages(showSavedPosters)
+}
+
