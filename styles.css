@@ -118,6 +118,15 @@ button:hover {
   padding: 20px;
 }
 
+.unmotivational-posters {
+  padding: 40px;
+}
+
+.sad-posters-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .mini-poster, .sad-mini-poster {
   background: black;
   color: white;
@@ -145,4 +154,16 @@ button:hover {
   letter-spacing: 5px;
   margin-bottom: 10px;
   text-transform: uppercase;
+}
+
+.sad-mini-poster {
+  margin: 5px;
+  border: 0em;
+  border-radius: 10px;
+  background-color: grey;
+}
+
+.sad-mini-poster h2 {
+  color: black;
+
 }
