@@ -118,7 +118,7 @@ button:hover {
   padding: 20px;
 }
 
-.mini-poster {
+.mini-poster, .sad-mini-poster {
   background: black;
   color: white;
   height: 340px;
@@ -126,20 +126,20 @@ button:hover {
   width: 425px;
 }
 
-.mini-poster img {
+.mini-poster img, .sad-mini-poster img {
   height:200px;
   width: 300px;
 }
 
-.mini-poster h2,
-.mini-poster h4,
+.mini-poster h2, .sad-mini-poster h2,
+.mini-poster h4, .sad-mini-poster h4,
 .delete {
   color: white;
   line-height: 1;
   width: 90%;
 }
 
-.mini-poster h2 {
+.mini-poster h2, .sad-mini-poster h2 {
   font-size: 30px;
   font-weight: normal;
   letter-spacing: 5px;
