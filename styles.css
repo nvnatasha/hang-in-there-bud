@@ -130,6 +130,8 @@ button:hover {
 }
 
 .mini-poster, .sad-mini-poster {
+  position: relative;
+  display: inline-block;
   background: black;
   color: white;
   height: 340px;
@@ -207,4 +209,19 @@ p {
   margin-top: 10px;
   color: red;
   font-weight: bold;
+}
+
+.delete-poster-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: grey;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-poster-button:hover {
+  background-color: darkred;
 }

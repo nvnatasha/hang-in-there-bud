@@ -277,6 +277,10 @@ backToMain.addEventListener('click', () => {
 sadToMain.addEventListener('click', () =>
   switchPages(mainPoster)
 )
+document.addEventListener('DOMContentLoaded', () => {
+  loadSavedPosters()
+  displaySavedPosters() // Display posters immediately after loading
+})
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -362,7 +366,7 @@ function savePoster() {
     })
     if (!duplicate){
       savedPosters.push(currentPoster)
-
+      localStorage.setItem('savedPosters', JSON.stringify(savedPosters))
       displaySavedPosters()
     }
   }
@@ -376,10 +380,17 @@ function displaySavedPosters() {
     smallPoster.className = 'mini-poster'
     
     smallPoster.innerHTML = `
+    <button class="delete-poster-button">X</button>
     <img src="${poster.imageURL}" alt="Poster Image">
     <h2>${poster.title}</h2>
     <h4>${poster.quote}</h4>
     `
+    
+    let deleteButton = smallPoster.querySelector('.delete-poster-button')
+
+    deleteButton.addEventListener('click', () => {
+      deleteSavedPoster(poster.title)
+    })
 
     smallPoster.addEventListener('dblclick', () => {
       openModal(poster)
@@ -387,6 +398,11 @@ function displaySavedPosters() {
 
     savedPostersGrid.appendChild(smallPoster)
   })
+}
+
+function loadSavedPosters() {
+  let storedPosters = localStorage.getItem('savedPosters')
+  savedPosters = storedPosters ? JSON.parse(storedPosters) : []
 }
 
 function showSavedPostersHandler() {
@@ -425,7 +441,7 @@ function displaySadPosters() {
       <h4>${smallSadPoster.quote}</h4>
       `
       smallSadPosterThings.addEventListener('dblclick', () =>{
-        deletePoster(smallSadPoster.title)
+        deleteSadPoster(smallSadPoster.title)
       })
       
       sadPostersFlex.appendChild(smallSadPosterThings)
@@ -437,7 +453,7 @@ function displaySadPosters() {
     switchPages(showSadPosters)
   }
   
-  function deletePoster(title) {
+  function deleteSadPoster(title) {
     console.log('Before:', cleanedPosters)
     cleanedPosters = cleanedPosters.filter((poster) => {
       return poster.title !== title
@@ -446,12 +462,15 @@ function displaySadPosters() {
     displaySadPosters()
   }
 
-  // function initialize () {
-  //   if (cleanedPosters.length === 0){
-  //   cleanData()
-  //   }
-  //   sadPostersViewHandler()
-  // }
+  function deleteSavedPoster(title) {
+    console.log('Before (Saved Posters):', savedPosters)
+    savedPosters = savedPosters.filter((poster) => {
+      return poster.title !== title
+    })
+    localStorage.setItem('savedPosters', JSON.stringify(savedPosters)) // Update localStorage
+    console.log('After (Saved Posters):', savedPosters)
+    displaySavedPosters()
+  }
 
   function openModal(poster) {
     modalImage.src = poster.imageURL;
