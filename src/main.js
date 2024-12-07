@@ -279,7 +279,7 @@ sadToMain.addEventListener('click', () =>
 )
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedPosters()
-  displaySavedPosters() // Display posters immediately after loading
+  displaySavedPosters()
 })
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -374,7 +374,7 @@ function savePoster() {
 
 function displaySavedPosters() {
   savedPostersGrid.innerHTML = ''
-  console.log('saved:', savedPosters)
+
   savedPosters.forEach((poster) =>{
     let smallPoster = document.createElement('div')
     smallPoster.className = 'mini-poster'
@@ -458,17 +458,15 @@ function displaySadPosters() {
     cleanedPosters = cleanedPosters.filter((poster) => {
       return poster.title !== title
     })
-    console.log('After:', cleanedPosters);
+    console.log('After:', cleanedPosters)
     displaySadPosters()
   }
 
   function deleteSavedPoster(title) {
-    console.log('Before (Saved Posters):', savedPosters)
     savedPosters = savedPosters.filter((poster) => {
       return poster.title !== title
     })
-    localStorage.setItem('savedPosters', JSON.stringify(savedPosters)) // Update localStorage
-    console.log('After (Saved Posters):', savedPosters)
+    localStorage.setItem('savedPosters', JSON.stringify(savedPosters))
     displaySavedPosters()
   }
 
