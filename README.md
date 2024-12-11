@@ -1,26 +1,4 @@
-# Hang In There
 
-A boilerplate repo. 
-
-## Set Up
-
-1. Fork this repository
-2. Clone down your new, forked repo
-3. `cd` into the repository
-4. Open it in your text editor
-5. Add the instructors as collaborators on the repository
-
-Project spec & rubric can be found [here](https://curriculum.turing.edu/module2/projects/hang-in-there/index)
-
-To view your project:
-
-1. In your terminal, navigate to your project repo
-2. Run the command `open index.html`
-  
-______________________________________________________  
-# README Template  
-Before turning this project in, erase this line and everything above it and fill in the info below.  
-______________________________________________________  
 
 # Hang in There  
 
@@ -33,12 +11,12 @@ In the 'saved posters' view, you are able to click on a saved poster and view it
 
 ### Installation Instructions:
 [//]: <> (What steps does a person have to take to get your app cloned down and running?)
-To get this app running, they have to go to the github repo, clone it to their device, and open it using 'open index.html'
+To get this app running, they have to go to the github repo, clone it to their device, cd into the directory, and open it in their terminal using 'open index.html'
 
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off. gifs preferred!)
-While it might not be the most 'impressive' piece of functionality, I'm very amused and pleased with my localStorage saving my array of saved posters, and being able to see them be present, or see them get deleted in real time. 
-![localStorageEx](/Users/nvnatasha/Desktop/Screenshot 2024-12-11 at 9.51.10 AM.png)
+While it might not be the most 'impressive' piece of functionality, I'm very amused and pleased with my localStorage saving my array of saved posters, and being able to see them be present, or see them get deleted in real time. ![Screenshot 2024-12-11 at 9 51 10 AM](https://github.com/user-attachments/assets/910a978d-3d82-4685-97cc-00d0a8082d7c)
+
 
 
 ### Context:
