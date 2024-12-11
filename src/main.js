@@ -447,18 +447,16 @@ function displaySadPosters() {
       sadPostersFlex.appendChild(smallSadPosterThings)
     })
   }
-  
+
   function sadPostersViewHandler() {
     displaySadPosters()
     switchPages(showSadPosters)
   }
   
   function deleteSadPoster(title) {
-    console.log('Before:', cleanedPosters)
     cleanedPosters = cleanedPosters.filter((poster) => {
       return poster.title !== title
     })
-    console.log('After:', cleanedPosters)
     displaySadPosters()
   }
 

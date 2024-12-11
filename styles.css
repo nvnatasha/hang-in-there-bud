@@ -127,6 +127,7 @@ button:hover {
 .sad-posters-flex {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .mini-poster, .sad-mini-poster {
